@@ -54,6 +54,43 @@ const isMatch = (text, pattern) => {
     return firstMatch && isMatch(text.slice(1), pattern.slice(1));
   }
 };
-log(mismatch)
 
-console.log(isMatch("mississippik", "mis*is*.p*."), "❤️ true");
+// console.log(isMatch("mississippik", "mis*is*.p*."), "❤️ true");
+
+// Problem # 2
+var generate = function (numRows) {
+  let res = [[1]];
+  for (let i = 1; i < numRows; i++) {
+    let prev = res[i - 1],
+      row = [1];
+    for (let j = 1; j < i; j++) row.push(prev[j - 1] + prev[j]);
+    row.push(1);
+    res.push(row);
+  }
+  return res;
+};
+
+// console.time();
+// console.log(generate(5));
+// console.timeEnd();
+
+// Problem # 3
+
+let searchInsert = function (nums, target) {
+  let left = 0, right = nums.length - 1;
+  
+  while (left <= right) {
+    let mid = Math.floor((left + right) / 2);
+    
+    if (nums[mid] === target) return mid;
+    if (target < nums[mid]) right = mid - 1;
+    else left = mid + 1;
+  }
+  
+  return left; 
+};
+
+
+console.time();
+console.log(searchInsert([1, 3, 6], 5));
+console.timeEnd();
