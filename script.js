@@ -77,20 +77,41 @@ var generate = function (numRows) {
 // Problem # 3
 
 let searchInsert = function (nums, target) {
-  let left = 0, right = nums.length - 1;
-  
+  let left = 0,
+    right = nums.length - 1;
+
   while (left <= right) {
     let mid = Math.floor((left + right) / 2);
-    
+
     if (nums[mid] === target) return mid;
     if (target < nums[mid]) right = mid - 1;
     else left = mid + 1;
   }
-  
-  return left; 
+
+  return left;
 };
 
+// console.time();
+// console.log(searchInsert([1, 3, 6], 5));
+// console.timeEnd();
+
+// Problem # 4
+
+var divideArray = function (nums) {
+  var abc = nums.sort((a, b) => a - b);
+  var isPoss = true;
+  for (let i = 0; i < abc.length; i += 2) {
+    console.log(abc[i], abc[i + 1]);
+    isPoss = abc[i] === abc[i + 1];
+    if(!isPoss){
+      break
+    }
+
+  }
+
+  return isPoss;
+};
 
 console.time();
-console.log(searchInsert([1, 3, 6], 5));
+console.log(divideArray([15,13,5,20,18,2,20,8,20,17,10,19]));
 console.timeEnd();
