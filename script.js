@@ -112,6 +112,32 @@ var divideArray = function (nums) {
   return isPoss;
 };
 
+// console.time();
+// console.log(divideArray([15,13,5,20,18,2,20,8,20,17,10,19]));
+// console.timeEnd();
+
+
+
+// Problem # 5
+
+var twoSum = function(nums, target) {
+  const map = new Map();
+  
+  for (let i = 0; i < nums.length; i++) {
+    let complement = target - nums[i];
+
+    if (map.has(complement)) {
+      return [map.get(complement), i];
+    }
+
+    map.set(nums[i], i);
+  }
+  
+  return null;
+};
+
+
+
 console.time();
-console.log(divideArray([15,13,5,20,18,2,20,8,20,17,10,19]));
+console.log(twoSum([-10 , -10] , -20));
 console.timeEnd();
