@@ -1,44 +1,5 @@
 // Problem # 1
 
-// "mississippi", "mis*is*p*."
-
-// var isMatch = function (s, p) {
-//   //   if (p.includes(".*")) {
-//   //     return true;
-//   //   }
-//   let result = true;
-//   const astelicLetters = [];
-//   for (var i = 0; i < s.length; i++) {
-//     if (p[i])
-//       if (p[i + 1] !== "*" && p[i] !== "*") {
-//         result = p[i] === s[i] || p[i] === ".";
-//         if (!result) {
-//           return result;
-//         }
-//       } else if (p[i + 1] === "*") {
-//         astelicLetters.push(p[i]);
-//         continue;
-//       } else {
-//         continue;
-//       }
-//   }
-
-//   return true;
-// };
-
-// console.log(isMatch("abc", "a.*c"), "❤️ true");
-// console.log(isMatch("ab", ".*c"), "❤️ false");
-// console.log(isMatch("aaa", "ab*a*c*a"), "❤️ true");
-// console.log(isMatch("aaa", "a*a"), "❤️ true");
-// console.log(isMatch("aab", "c*a*b"), "❤️ true");
-// console.log(isMatch("ab", ".*"), "❤️ true");
-// console.log(isMatch("abc", "a.c"), "❤️ true");
-// console.log(isMatch("abcd", "d*"), "❤️ false");
-// console.log(isMatch("mississippi", "mis*is*ip*."), "❤️ true");
-// console.log(isMatch("a", "ab*"), "❤️ true");
-// console.log(isMatch("bbbba", ".*a*a"), "❤️ true");
-// console.log(isMatch("aa", "a"), "❤️ false");
-
 const isMatch = (text, pattern) => {
   if (pattern.length === 0) return text.length === 0;
 
@@ -55,9 +16,12 @@ const isMatch = (text, pattern) => {
   }
 };
 
-// console.log(isMatch("mississippik", "mis*is*.p*."), "❤️ true");
+// console.time();
+// console.log(isMatch("mississippik", "mis*is*.p*."));
+// console.timeEnd();
 
 // Problem # 2
+
 var generate = function (numRows) {
   let res = [[1]];
   for (let i = 1; i < numRows; i++) {
@@ -103,10 +67,9 @@ var divideArray = function (nums) {
   for (let i = 0; i < abc.length; i += 2) {
     console.log(abc[i], abc[i + 1]);
     isPoss = abc[i] === abc[i + 1];
-    if(!isPoss){
-      break
+    if (!isPoss) {
+      break;
     }
-
   }
 
   return isPoss;
@@ -116,13 +79,11 @@ var divideArray = function (nums) {
 // console.log(divideArray([15,13,5,20,18,2,20,8,20,17,10,19]));
 // console.timeEnd();
 
-
-
 // Problem # 5
 
-var twoSum = function(nums, target) {
+var twoSum = function (nums, target) {
   const map = new Map();
-  
+
   for (let i = 0; i < nums.length; i++) {
     let complement = target - nums[i];
 
@@ -132,12 +93,84 @@ var twoSum = function(nums, target) {
 
     map.set(nums[i], i);
   }
-  
+
   return null;
 };
 
+// console.time();
+// console.log(twoSum([-10 , -10] , -20));
+// console.timeEnd();
+
+// Problem # 6
+
+var mergeKLists = function (lists) {
+  const values = [];
+  let mergedList = null;
+
+  for (let list of lists) {
+    while (list) {
+      values.push(list.val);
+      list = list.next;
+    }
+  }
+
+  values.sort((a, b) => a - b);
+
+  for (let i = values.length - 1; i >= 0; i--) {
+    mergedList = { val: values[i], next: mergedList };
+  }
+
+  return mergedList;
+};
+
+// console.time();
+// console.log(
+//   mergeKLists([
+//     null,
+//     { val: -1, next: { val: 5, next: { val: 11, next: null } } },
+//     null,
+//     { val: 6, next: { val: 10, next: null } },
+//   ])
+// );
+// console.timeEnd();
+
+// Problem # 7
+
+var minOperations = function (nums) {
+  let res = 0;
+  const fliped = [...nums]; // Create a copy
+  const flip = (num) => 1 - num; // Flip 0 to 1 and 1 to 0
+
+  for (let i = 0; i < nums.length; i++) {
+    if (fliped[i] === 1) continue; // If already 1, move on
+
+    if (i + 2 >= nums.length) return -1; // If flipping is impossible
+
+    // Flip the current and next two elements
+    fliped[i] = flip(fliped[i]);
+    fliped?.[i + 1] = flip(fliped[i + 1]);
+    fliped?.[i + 2] = flip(fliped[i + 2]);
+
+    res++;
+  }
+
+  return res;
+};
 
 
 console.time();
-console.log(twoSum([-10 , -10] , -20));
+console.log(minOperations([0, 1, 1, 1, 0, 0]));
+console.timeEnd();
+
+// Problem # 8
+
+var reverseKGroup = function(head, k) {
+  for(var i = 0 ; i<head.length ; i++){
+      
+  }
+  return head
+};
+
+console.time();
+console.log(minOperations([0, 1, 1, 1, 0, 0]));
 console.timeEnd();
