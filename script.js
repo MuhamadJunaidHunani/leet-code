@@ -148,8 +148,8 @@ var minOperations = function (nums) {
 
     // Flip the current and next two elements
     fliped[i] = flip(fliped[i]);
-    fliped?.[i + 1] = flip(fliped[i + 1]);
-    fliped?.[i + 2] = flip(fliped[i + 2]);
+    fliped[i + 1] = flip(fliped[i + 1]);
+    fliped[i + 2] = flip(fliped[i + 2]);
 
     res++;
   }
@@ -157,20 +157,43 @@ var minOperations = function (nums) {
   return res;
 };
 
-
-console.time();
-console.log(minOperations([0, 1, 1, 1, 0, 0]));
-console.timeEnd();
+// console.time();
+// console.log(minOperations([0, 1, 1, 1, 0, 0]));
+// console.timeEnd();
 
 // Problem # 8
 
 var reverseKGroup = function(head, k) {
-  for(var i = 0 ; i<head.length ; i++){
-      
+  if (!head || k === 1) return head;
+
+  let dummy = new ListNode(0);
+  dummy.next = head;
+  let prevGroupEnd = dummy;
+
+  while (true) {
+      let kthNode = prevGroupEnd;
+      for (let i = 0; i < k; i++) {
+          kthNode = kthNode.next;
+          if (!kthNode) return dummy.next; // If remaining nodes < k, return as is
+      }
+
+      let groupStart = prevGroupEnd.next;
+      let nextGroupStart = kthNode.next;
+
+      // Reverse k nodes
+      let prev = nextGroupStart, curr = groupStart;
+      for (let i = 0; i < k; i++) {
+          let next = curr.next;
+          curr.next = prev;
+          prev = curr;
+          curr = next;
+      }
+
+      prevGroupEnd.next = prev;
+      prevGroupEnd = groupStart;
   }
-  return head
 };
 
 console.time();
-console.log(minOperations([0, 1, 1, 1, 0, 0]));
+console.log(reverseKGroup([1, 2, 3, 4, 5] , 3 ));
 console.timeEnd();
