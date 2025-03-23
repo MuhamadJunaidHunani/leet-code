@@ -194,6 +194,34 @@ var reverseKGroup = function(head, k) {
   }
 };
 
+// console.time();
+// console.log(reverseKGroup([1, 2, 3, 4, 5] , 3 ));
+// console.timeEnd();
+
+
+// Problem # 8
+
+
+var findSubstring = function(s, words) {
+  const res = []
+  let count = 0
+  // [1, 2, 3, 4, 5]
+
+  for (let i = 0; i < words.length; i++) {
+    for (let j = i+1; j < words.length; j++) {
+      count = count+1
+      console.log(count ,words.slice(i,j));
+      
+
+    }
+    
+  }
+
+  return "_"
+    
+};
+
 console.time();
-console.log(reverseKGroup([1, 2, 3, 4, 5] , 3 ));
+console.log(findSubstring("barfoothefoobarman" ,   [1, 2, 3, 4]
+));
 console.timeEnd();
